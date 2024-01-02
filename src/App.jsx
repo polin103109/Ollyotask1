@@ -7,8 +7,7 @@ function App() {
   return (
     <>
     
-    
-     <div className='folderDiv'> hiiii</div>
+    <div className='folderDiv'>Folder</div>
      
     </>
   )
