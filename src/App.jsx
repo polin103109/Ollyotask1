@@ -8,9 +8,8 @@ function App() {
     <>
     
     
-     <div>hiiii</div>
-     <h1 className="underline">My portfolio</h1>
-          <p>Here are the case studies of my projects...</p>
+     <div className='folderDiv'> hiiii</div>
+     
     </>
   )
 }
