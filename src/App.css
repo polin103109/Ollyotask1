@@ -1,3 +1,32 @@
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0; 
+  
+}
+.main-folder-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+input{
+  height: 50px;
+  width: 100px;
+  background-color: #e0e0e0;
+  color: black;
+  font-weight: bold;
+  margin: 10px;
+}
+button{
+  color:white;
+  font-weight: bold;
+  border: none;
+  background-color: blue;
+}
+
+
 .folderDiv{
   width:200px;
   height:50px;
@@ -16,7 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
   gap:20px;
   width:200px;
   height:50px;
@@ -30,9 +59,10 @@
   
 
 }
-.subforders{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap:10px;
 
+.subfolders{
+  background-color:antiquewhite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

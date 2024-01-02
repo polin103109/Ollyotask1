@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import './App.css';
 
@@ -13,11 +14,12 @@ function Subfolder({ name, subfolders }) {
       <div className='subfolder' onClick={clickSubfolder}>
         {name}
       </div>
+      
       {subfoldersVisible && (
         <div className='subfolders'>
           {subfolders.map((subfolder, index) => (
-            <div className='subfolder'>
-            <Subfolder key={index} name={subfolder.name} subfolders={subfolder.subfolders} />
+            <div className='subfolder' key={index}>
+              <Subfolder name={subfolder.name} subfolders={subfolder.subfolders} />
             </div>
           ))}
         </div>
@@ -27,35 +29,39 @@ function Subfolder({ name, subfolders }) {
 }
 
 function App() {
-  const [foldersVisible, setFoldersVisible] = useState(false);
+  const [mainFolderSubfolders, setMainFolderSubfolders] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
-  const clickFolder = () => {
-    setFoldersVisible(!foldersVisible);
+  const handleInput = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const addSubfolder = () => {
+    if (inputValue.trim() !== '') {
+      setMainFolderSubfolders([
+        ...mainFolderSubfolders,
+        { name: inputValue, subfolders: [] },
+      ]);
+      setInputValue('');
+    }
   };
 
   return (
-    <div>
-      <div className='folderDiv' onClick={clickFolder}>
-        Folder
+    <div className="main-folder-wrapper">
+      <h1>Folder Management Hierarchy</h1>
+      <div>
+        <input type="text" placeholder='Input' value={inputValue} onChange={handleInput} />
+        <button onClick={addSubfolder}>Add Subfolder</button>
       </div>
-
-      {foldersVisible && (
-        <div className='subfolders'>
-          <Subfolder
-            name='Fruits'
-            subfolders={[
-              { name: 'Apple', subfolders: [{name:'applle',subfolders:[]}] },
-              { name: 'Orange', subfolders: [{ name: 'Orangii', subfolders: [] }] },
-            ]}
-          />
-          <Subfolder name='Animals' subfolders={[
-            { name: 'Lion', subfolders: [] },
-            { name: 'Tiger', subfolders: [{ name: 'Baby Tiger', subfolders: [] }] },
-          ]} />
-        </div>
-      )}
+      
+      <div className='subfolders'>
+        {mainFolderSubfolders.map((subfolder, index) => (
+          <div className='subfolder' key={index}>
+            <Subfolder name={subfolder.name} subfolders={subfolder.subfolders} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
-
 export default App;
