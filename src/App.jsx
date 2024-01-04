@@ -5,15 +5,11 @@ import Folder from "./Folder";
 
 
 function App() {
-  const [path, setPath] = useState([""]);
-  const updatePath = ({folderTree:{id}}) => {
-    
-    setPath([...path, folderTree.name]);
-  };
+
   return (
     <div>
-      <span>Path:{currentPath.join("+")}</span>
-      <Folder folderTree={folderTree} currentPath={currentPath} updatePath={updatePath} />
+     
+      <Folder folderTree={folderTree} />
     </div>
   );
 
