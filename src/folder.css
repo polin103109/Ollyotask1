@@ -1,6 +1,43 @@
 .mainfolder{
-    padding-left: 10px;
+
+    padding-bottom: 10px;
+    
+}
+.maintitle{
+    margin-left: 10px;
 }
 .childfolder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-left: 10px;
+    padding-bottom: 10px;
+    
+    border-radius: 25px;
+    margin: 10px;
+    max-width: 100%;
+    
 }
+button{
+    background-color: greenyellow;
+}
+.FontAwesomeIcon{
+  margin: 5px;
+}
+
+
+  
+  
+  .mainfolder span {
+    cursor: pointer;
+    font-weight: bold;
+   
+  }
+  
+ 
+  
+  
+  .childfolder .mainfolder {
+    margin-left: 20px; 
+  }
+  
