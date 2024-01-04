@@ -6,6 +6,10 @@ body{
   background-color: white;
   color: black;
   
+  
+}
+.mainfolder{
+  padding-left: 10;
 }
 .main-folder-wrapper {
   display: flex;
