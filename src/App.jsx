@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <FolderContext/>
-      <Folder folderTree={folderTree} />
+    {/* <Folder folderTree={folderTree} /> */}
     </div>
   );
 

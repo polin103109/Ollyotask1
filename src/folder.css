@@ -1,6 +1,7 @@
 .mainfolder{
 
-    padding-bottom: 10px;
+ padding-bottom: 10px;
+ 
     
 }
 .maintitle{
@@ -20,6 +21,7 @@
 }
 button{
     background-color: greenyellow;
+    margin: 10px;
 }
 .FontAwesomeIcon{
   margin: 5px;
