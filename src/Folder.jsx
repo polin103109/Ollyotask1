@@ -5,50 +5,62 @@ import "./folder.css";
 
 export default function Folder({ folderTree }) {
   const [isVisible, setIsVisible] = useState(false);
-  const [newFolderName, setNewFolderName] = useState(""); // Track new folder name
+  const [newFolderName, setNewFolderName] = useState("");
   const [folders, setFolders] = useState([]);
 
   const expand = () => {
     setIsVisible(!isVisible);
   };
 
+  const handleDeleteFolder = () => {
+    const folderIndex = folders.findIndex(folder => folder.name === newFolderName);
+    if (folderIndex !== -1) {
+      const updatedFolders = [...folders];
+      updatedFolders.splice(folderIndex, 1);
+      setFolders(updatedFolders);
+      setNewFolderName("");
+    } else {
+      alert("Folder does not exist!");
+    }
+  };
+
   const handleCreateFolder = () => {
-    
     const newFolder = {
+      id: Date.now(),
       name: newFolderName,
       children: []
     };
 
     setFolders([...folders, newFolder]);
-    setNewFolderName(""); 
+    setNewFolderName("");
   };
- 
 
   return (
     <div className="mainfolder">
-       <FontAwesomeIcon icon={faFolderOpen} />
-      
-    <span className="maintitle" onClick={expand}>{folderTree.name}</span>
+      <FontAwesomeIcon icon={faFolderOpen} />
+      <span className="maintitle" onClick={expand}>
+        {folderTree.name}
+      </span>
       {isVisible && (
         <div>
           <div className="create-folder">
-       <input
+            <input
               type="text"
               value={newFolderName}
-              
               onChange={(e) => setNewFolderName(e.target.value)}
               placeholder="Enter folder name"
             />
-           <button onClick={handleCreateFolder}>+</button>
-         </div>
-            
-          {folders.map((child, index) => (
-            <div className="childfolder" key={index}>
-              
-              <Folder folderTree={child} key={index} />
+            <button onClick={handleCreateFolder}>+</button>
+            <button onClick={ handleDeleteFolder}>
+              Delete
+            </button>
+          </div>
+
+          {folders.map((child) => (
+            <div className="childfolder" key={child.id}>
+              <Folder folderTree={child} />
             </div>
           ))}
-          
         </div>
       )}
     </div>
