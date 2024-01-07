@@ -3,13 +3,16 @@ import './App.css';
 import { folderTree } from "./data";
 import Folder from "./Folder";
 import FolderContext from './FolderContext';
+import Home from './Folderpath.jsx';
 
 
 function App() {
 
   return (
     <div>
-      <FolderContext/>
+     
+      {/* <FolderContext/> */}
+      <Home/>
     {/* <Folder folderTree={folderTree} /> */}
     </div>
   );
