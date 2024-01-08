@@ -1,0 +1,25 @@
+.childfolderdiv{
+    margin-left: 20px;
+    
+}
+.mainfolder{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+button{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+.colorEditOptions{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.coloranddelete{
+    border: 1px solid black;
+}
