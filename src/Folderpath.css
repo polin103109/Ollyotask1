@@ -7,14 +7,56 @@
     flex-direction: row;
     gap:10px;
 }
+#folderspan{
+  font-weight: bold;
+  
+}
+.inputadd{
+margin-bottom: 20px;
+}
+
 button{
     height: 40px;
-    display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
     
 
 }
+input[type="text"] {
+    margin-right: 10px;
+    padding: 10px;
+    margin-left: 5px;
+  }
+  
+  button[type="button"] {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  .maindiv{
+    width: 500px;
+    margin: 0;
+    padding: 0;
+  }
+#spantag{
+    margin-right: 15px;
+    font-weight: bold;
+    font-size: larger;
+}
+.sortingdiv{
+    height:  70px;
+
+}
+.customSelect {
+    background-color: #6d9ecf;
+    color:white;
+    font-weight: bold;
+    font-size: larger;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    
+  }
 .colorEditOptions{
     display: flex;
     flex-direction: row;

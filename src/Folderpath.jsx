@@ -10,10 +10,30 @@ const Home = () => {
   const [folderStack, setFolderStack] = useState(['Home']);
   const [newFolderName, setNewFolderName] = useState('');
   const [selectedFolder, setSelectedFolder] = useState(null);
- // const [selectedColor, setSelectedColor] = useState('#0000ff');
+  const [selectedColor, setSelectedColor] = useState('');
   const [folders, setFolders] = useState(getFoldersFromLocalStorage() || []);
+  const [sortOrder, setSortOrder] = useState('ascending');
+    const handleSortOrderChange = (e) => {
+    setSortOrder(e.target.value);
+    sortFolders(e.target.value);
+  };
+  const sortFolders = (order) => {
+    const sortedFolders = [...folders];
+    sortedFolders.sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      if (order === 'ascending') {
+        return nameA.localeCompare(nameB);
+      } else {
+        return nameB.localeCompare(nameA);
+      }
+    });
+    setFolders(sortedFolders);
+    saveFoldersToLocalStorage(sortedFolders);
+  };
 
-  const handleColor = () => {
+
+const handleColor = () => {
     setShowColorEdit(!showColorEdit);
   };
 
@@ -59,8 +79,6 @@ const Home = () => {
           <select value={folder.color} onChange={handleColorChange}>
             <option value="#ff0000">Red</option>
             <option value="#00ff00">Green</option>
-            <option value="#0000ff">Blue</option>
-            <option value="#0000ff">Blue</option>
             <option value="#0000ff">Blue</option>
           </select>
           </div>
@@ -145,17 +163,20 @@ const Home = () => {
                 <FontAwesomeIcon
                   icon={selectedFolder && selectedFolder.id === childFolder.id ? faFolderOpen : faFolder}
                   onClick={() => handleFolderClick(childFolder)}
-                  style={{ cursor: 'pointer'}}
+                  style={{ cursor: 'pointer', color:childFolder.color}}
                 />
-                <span onClick={() => handleFolderClick(childFolder)} style={{ marginLeft: '10px', cursor: 'pointer' }}>
+                <span id="spantag" onClick={() => handleFolderClick(childFolder)} style={{ marginLeft: '10px', cursor: 'pointer' }}>
                   {childFolder.name}
+                  </span>
                   <FontAwesomeIcon
                     icon={faEllipsisV}
                     style={{ marginLeft: '5px', cursor: 'pointer' }}
                     onClick={handleColor}
                   />
-                </span>
-                {colorEditOptions(childFolder,childFolder.color)}
+                
+                {colorEditOptions(childFolder)}
+               {renderRecursiveSubFolders(childFolder)}  
+               
               </div>
             ))}
           </div>
@@ -171,16 +192,22 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className='maindiv'>
       <button onClick={handleBackClick}>Back</button>
-      <b><span>Folder Path: {folderPath}</span></b>
-      <div>
+      <span id="folderspan" >Folder Path: {folderPath}</span>
+      <div className='inputadd'>
         <input
           type="text"
           value={newFolderName}
           onChange={(e) => setNewFolderName(e.target.value)}
         />
         <button onClick={handleAddFolder}>Add</button>
+      </div>
+      <div className='sortingdiv'>  
+        <select value={sortOrder} className="customSelect" onChange={handleSortOrderChange}>
+          <option value="ascending">Sort By Ascending</option>
+          <option value="descending">Sort By Descending</option>
+        </select>
       </div>
       <div className="colorpickerdiv"></div>
 
@@ -190,16 +217,17 @@ const Home = () => {
           <FontAwesomeIcon
             icon={selectedFolder && selectedFolder.id === folder.id ? faFolderOpen : faFolder}
             onClick={() => handleFolderClick(folder)}
-            style={{ cursor: 'pointer'}}
+            style={{ cursor: 'pointer', color:folder.color }}
           />
-          <span onClick={() => handleFolderClick(folder)} style={{ marginLeft: '10px', cursor: 'pointer' }}>
+          <span id="spantag"onClick={() => handleFolderClick(folder)} style={{ marginLeft: '10px', cursor: 'pointer' }}>
             {folder.name}
+            </span>
             <FontAwesomeIcon
               icon={faEllipsisV}
               style={{ marginLeft: '5px', cursor: 'pointer' }}
               onClick={handleColor}
             />
-          </span>
+         
           {renderSubFolders(folder)}
           {colorEditOptions(folder, folder.color)}
         </div>
